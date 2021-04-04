@@ -1,11 +1,16 @@
 #include "room.h"
 
 
-room::room(int roomNum, QString name, QString description, QString image){
+room::room(QChar roomType,int roomNum, QString description, QString image){
+    this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
-    this -> name = name;
     this -> image = image;
+}
+room::room(QChar roomType,int roomNum, QString description){
+    this -> roomType = roomType;
+    this -> roomNum = roomNum;
+    this -> description = description;
 }
 
 void room::setExits(room *north, room *east, room *south, room *west){
@@ -24,7 +29,10 @@ QString room::shortDescription() {
 }
 
 QString room::longDescription() {
-    return "Room = " + name + ".\n" + description + "\n " + displayItem();
+    QString roomID = "";
+    QChar tempChar = roomType;
+    roomID += tempChar;
+    return "Room = " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n " + displayItem();
 }
 
 QString room::getImage(){
@@ -33,6 +41,10 @@ QString room::getImage(){
 
 int room::getRoomNum(){
     return roomNum;
+}
+
+QChar room::getRoomType(){
+    return roomType;
 }
 
 room* room::nextRoom(string direction) {
@@ -96,6 +108,8 @@ vector <Item> room::getItemsArray(){
 void room::removeItem(int placeNum){
     itemsInRoom.erase(itemsInRoom.begin() + placeNum);
 }
+
+
 
 
 /*int room::isItemInRoom(string inString)
