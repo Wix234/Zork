@@ -19,6 +19,8 @@ private:
     QString description;
     QString name;
     QString image;
+    
+    QChar roomType;
 
     int roomNum;
 
@@ -31,12 +33,14 @@ private:
 
 public:
 
-    room(int roomNum, QString name, QString description, QString image);
+    room(QChar roomType,int roomNum, QString description, QString image);
+    room(QChar roomType,int roomNum, QString description);
     void setExits(room *north, room *east, room *south, room *west);
     QString shortDescription();
     QString longDescription();
     QString getImage();
     int getRoomNum();
+    QChar getRoomType();
     room* nextRoom(string);
 
     void addItem(Item *inItem);
