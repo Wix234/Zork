@@ -1,16 +1,20 @@
 #include "room.h"
 
 
-room::room(QChar roomType,double roomNum, QString description, QString image){
+
+room::room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
     this -> image = image;
+    this -> itemRequired = itemRequired;
 }
-room::room(QChar roomType,double roomNum, QString description){
+
+room::room(QChar roomType, double roomNum, QString description, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
+    this -> itemRequired = itemRequired;
 }
 
 void room::setExits(room *north, room *east, room *south, room *west){
@@ -56,6 +60,13 @@ room* room::nextRoom(string direction) {
                 // part of the "pair" (<string, Room*>) and return it.
 }
 
+bool room::isRequired(){
+    return itemRequired;
+}
+
+void room::setRequired(bool itemRequired){
+    this-> itemRequired = itemRequired;
+}
 
 void room::addItem(Item *inItem) {
     itemsInRoom.push_back(*inItem);

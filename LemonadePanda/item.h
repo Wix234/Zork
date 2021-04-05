@@ -13,6 +13,7 @@ private:
     int DMG;
 
 public:
+    Item (QString name, QString description);
     Item (QString name, QString description, bool isWeapon, int DMG);
     void setWeaponCheck(bool isWeaapon, int DMG);
 
@@ -21,3 +22,4 @@ public:
 };
 
 #endif /*ITEM_H_*/
+

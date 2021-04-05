@@ -1,5 +1,10 @@
 #include "item.h"
 
+Item::Item (QString name, QString description) {
+    this -> name = name;
+    this -> description = description;
+}
+
 Item::Item (QString name, QString description, bool isWeapon, int DMG) {
     this -> name = name;
     this -> description = description;
