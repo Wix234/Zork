@@ -1,16 +1,18 @@
 #include "room.h"
 
 
-room::room(QChar roomType,int roomNum, QString description, QString image){
+room::room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
     this -> image = image;
+    this -> itemRequired = itemRequired;
 }
-room::room(QChar roomType,int roomNum, QString description){
+room::room(QChar roomType, double roomNum, QString description, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
+    this -> itemRequired = itemRequired;
 }
 
 void room::setExits(room *north, room *east, room *south, room *west){
@@ -32,14 +34,15 @@ QString room::longDescription() {
     QString roomID = "";
     QChar tempChar = roomType;
     roomID += tempChar;
-    return "Room = " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n " + displayItem();
+    return "Your currently in " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n ";
+
 }
 
 QString room::getImage(){
     return image;
 }
 
-int room::getRoomNum(){
+double room::getRoomNum(){
     return roomNum;
 }
 
@@ -55,6 +58,13 @@ room* room::nextRoom(string direction) {
                 // part of the "pair" (<string, Room*>) and return it.
 }
 
+bool room::isRequired(){
+    return itemRequired;
+}
+
+void room::setRequired(bool itemRequired){
+    this-> itemRequired = itemRequired;
+}
 
 void room::addItem(Item *inItem) {
     itemsInRoom.push_back(*inItem);
@@ -108,8 +118,6 @@ vector <Item> room::getItemsArray(){
 void room::removeItem(int placeNum){
     itemsInRoom.erase(itemsInRoom.begin() + placeNum);
 }
-
-
 
 
 /*int room::isItemInRoom(string inString)
