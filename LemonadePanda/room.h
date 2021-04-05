@@ -20,9 +20,11 @@ private:
     QString name;
     QString image;
 
+    bool itemRequired;
+    
     QChar roomType;
 
-    double roomNum;
+    int roomNum;
 
     map<string, room*> exits;
 
@@ -33,15 +35,17 @@ private:
 
 public:
 
-    room(QChar roomType, double roomNum, QString description, QString image);
-    room(QChar roomType, double roomNum, QString description);
+    room(QChar roomType,int roomNum, QString description, QString image, bool itemRequired);
+    room(QChar roomType,int roomNum, QString description, bool itemRequired);
     void setExits(room *north, room *east, room *south, room *west);
     QString shortDescription();
     QString longDescription();
     QString getImage();
-    double getRoomNum();
+    int getRoomNum();
     QChar getRoomType();
     room* nextRoom(string);
+    bool isRequired();
+    void setRequired(bool itemRequired);
 
     void addItem(Item *inItem);
     void addItemFromBag(Item inItem);
@@ -51,6 +55,7 @@ public:
     vector <Item> getItemsArray();
     void removeItem(int placeNum);
     //int isItemInRoom(string inString);
+
 
 };
 
