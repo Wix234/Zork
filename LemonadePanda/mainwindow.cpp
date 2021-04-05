@@ -23,6 +23,7 @@ void MainWindow::createRooms()  {
     s = new room('s', 0, "The glass wall behind you is eluminating the main entrance of the building. There is two staircases, one to your left the other to your right. "
                             "They both lead to hallway 3. You never knew why they did two instead of once centre one, maybe "
                             " it was to have people walk up one way and walk down the other way. Infront of you is the main lecture hall of the building, the Jean Monnet, also know as room 1. "
+
                             "Behind you is the main exit to the building, unfortunately it's locked with a 10 letter passkey. Maybe if you look around you'll see it written down somewhere", false);
     r1 = new room('r', 1, "The main lecture hall in the builing. As you walking in you see 200 red seats facing you. You remember how stressful it was to give presentations infront of everyone. To your right is "
                             "room 6. You know it as the Games Soc room. To your left is hallway 1. On the back back wall you notice theres is a letter O written in blue marker.", false);
@@ -82,8 +83,6 @@ void MainWindow::createRooms()  {
     h24 = new room ('h', 24, "Left is a staircase to hallway 15. Right is an elevator to hallway 15. North is room 25. South is hallway 25.", false);
     h25 = new room ('h', 25, "North is hallway 24. South is room 26. To the right as the end of the hallway is a staircase that leads to hallway to 16.", false);
     r26 = new room ('r', 26, "North is hallway 25.", false);
-
-
 
 
 //             (N, E, S, W)
@@ -189,6 +188,7 @@ bool MainWindow::processCommand(int buttonNumber) {
                 image = QPixmap(mapImages[i]).scaled(map->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
                 map->setPixmap(image);
             });
+
 
             Button->setText("Floor" + QString::number(i + 1));
             Button->setObjectName("Button" + QString::number(i));
@@ -334,7 +334,9 @@ void MainWindow::go(string direction) {
     } else {
         currentRoom = nextRoom;
         mainText = currentRoom->longDescription();
+
         itemText = currentRoom->displayItem();
+
         ui-> itemTextBox->setWordWrap(true);
         ui->itemTextBox->setText(itemText);
         //mainImage = currentRoom->getImage();

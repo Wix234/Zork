@@ -1,6 +1,7 @@
 #include "room.h"
 
 
+
 room::room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
@@ -8,6 +9,7 @@ room::room(QChar roomType, double roomNum, QString description, QString image, b
     this -> image = image;
     this -> itemRequired = itemRequired;
 }
+
 room::room(QChar roomType, double roomNum, QString description, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
@@ -140,3 +142,4 @@ void room::removeItem(int placeNum){
         }
     return -1;
 }*/
+

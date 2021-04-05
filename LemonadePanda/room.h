@@ -20,6 +20,7 @@ private:
     QString name;
     QString image;
 
+
     bool itemRequired;
 
     QChar roomType;
