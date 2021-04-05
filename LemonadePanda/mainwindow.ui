@@ -77,7 +77,7 @@
      <string>West</string>
     </property>
    </widget>
-   <widget class="QLabel" name="textBox">
+   <widget class="QLabel" name="itemTextBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -96,13 +96,13 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="imageBox">
+   <widget class="QLabel" name="mainBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>421</height>
+      <x>10</x>
+      <y>10</y>
+      <width>781</width>
+      <height>411</height>
      </rect>
     </property>
     <property name="styleSheet">
