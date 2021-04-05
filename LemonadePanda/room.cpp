@@ -56,6 +56,13 @@ room* room::nextRoom(string direction) {
                 // part of the "pair" (<string, Room*>) and return it.
 }
 
+bool room::isRequired(){
+    return itemRequired;
+}
+
+void room::setRequired(bool itemRequired){
+    this-> itemRequired = itemRequired;
+}
 
 void room::addItem(Item *inItem) {
     itemsInRoom.push_back(*inItem);
