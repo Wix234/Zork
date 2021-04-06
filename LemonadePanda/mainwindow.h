@@ -28,7 +28,7 @@ private slots:
     void on_North_clicked();
     void on_South_clicked();
     void on_East_clicked();
-    void on_West_clicked();     
+    void on_West_clicked();
 
     void on_take_clicked();
     void on_bag_clicked();
@@ -37,6 +37,8 @@ private slots:
 
     void on_actionHow_To_Play_triggered();
     void on_actionQuit_triggered();
+
+    void on_inspect_clicked();
 
 private:
 

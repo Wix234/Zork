@@ -1,5 +1,10 @@
 #include "item.h"
 
+Item::Item (QString name, QString description) {
+    this -> name = name;
+    this -> description = description;
+}
+
 Item::Item (QString name, QString description, bool isWeapon, int DMG) {
     this -> name = name;
     this -> description = description;
@@ -31,4 +36,3 @@ QString Item::getLongDescription(){
         return name + " " + description + ". It's a weapon that does " + QString::number(DMG) + " damage.\n";
     }
 }
-

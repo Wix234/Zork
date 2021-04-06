@@ -19,12 +19,14 @@ private:
     QString description;
     QString name;
     QString image;
+    QString waysOut;
+
 
     bool itemRequired;
-    
+
     QChar roomType;
 
-    int roomNum;
+    double roomNum;
 
     map<string, room*> exits;
 
@@ -35,13 +37,13 @@ private:
 
 public:
 
-    room(QChar roomType,int roomNum, QString description, QString image, bool itemRequired);
-    room(QChar roomType,int roomNum, QString description, bool itemRequired);
+    //room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired);
+    room(QChar roomType, double roomNum, QString description, QString waysOut, bool itemRequired);
     void setExits(room *north, room *east, room *south, room *west);
     QString shortDescription();
     QString longDescription();
     QString getImage();
-    int getRoomNum();
+    double getRoomNum();
     QChar getRoomType();
     room* nextRoom(string);
     bool isRequired();
