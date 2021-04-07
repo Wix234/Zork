@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//add background color to popup windows
+//add font to pop up windows with QLabels
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow){
@@ -19,125 +22,134 @@ MainWindow::~MainWindow(){
 
 void MainWindow::createRooms()  {
 
+    //add weight/size to items
+    //add outside
 
-    s = new room('s', 0, "The glass wall behind you is eluminating the main entrance of the building. There is two staircases, one to your left the other to your right. "
+    s = new room('s', 0, "The glass wall behind you is illluminating the main entrance of the building. There is two staircases, one to your left the other to your right. "
                             "They both lead to hallway 3. You never knew why they did two instead of once centre one, maybe "
-                            " it was to have people walk up one way and walk down the other way. Infront of you is the main lecture hall of the building, the Jean Monnet, also know as room 1. "
+                            " it was to have people walk up one way and walk down the other way. Infront of you is the main lecture hall of the building, the Jean Monnet, also know as room 1. There a two potted plants "
+                            ", one on each side of the door. Behind you is the main exit to the building, unfortunately it's locked.",
+                            "Exits: North leads outside [locked]. South is room 1. West and East both lead to hallway 3 [floor 2].", true);
+        //Can't be put in bag
+        s->addItem(new Item("Plant 1", "A small looking palm tree in a pot. About a meter tall."));
+        //can't be put in bag
+        //plant 2 can be watered have a water bottle in your bag. The water makes a bloop bloop sound as it comes out of the bottle
+        s->addItem(new Item("Plant 2", "A small looking palm tree in a pot. About a meter tall. It looks a bit wilted."));
 
-                            "Behind you is the main exit to the building, unfortunately it's locked with a 10 letter passkey. Maybe if you look around you'll see it written down somewhere", false);
     r1 = new room('r', 1, "The main lecture hall in the builing. As you walking in you see 200 red seats facing you. You remember how stressful it was to give presentations infront of everyone. To your right is "
-                            "room 6. You know it as the Games Soc room. To your left is hallway 1. On the back back wall you notice theres is a letter O written in blue marker.", false);
-        r1->addItem(new Item("letter o", "its a letter", false, NULL));
+                            "room 6. You know it as the Games Soc room. To your left is hallway 1. On the back back wall you notice theres is a letter O written in blue marker.",
+                            "North is room s0. West is hallway 1. East is room 6 [locked]. ",false);
+        //can't be put in bag
+        //When you ride the chair you fall and undearneath the chair is revealed the letter N
+        r1->addItem(new Item("Desk Chair","A desk chair with wheels."));
+
     r2 = new room('r', 2, "As you enter the room you see a nice view of the little garden, the weather looks great to just go out and have a picnic. The room itself is fairly empty just a few couches that"
-                            " students used to take up. To your left is an elevator however it appears as if the power isn't working. Seeing as its so nice outside you didn't notice that all the lights aren't working.", false);
-    r3 = new room('r', 3, "Room 3 is an empty, as you enter it you are met with empty desk and chairs. Written on the white board is stay at 127.0.0.1 wear a 255.255.255.0, guess a comp sci student was here before lockdown. "
-                            "On the wall infront of you, you notice another letter written in blue marker. Maybe you should start taking them down and see what it spells??", false);
-        r3->addItem(new Item("letter a", "its a letter", false, NULL));
-    r4 = new room('r', 4, "The smell of saw dust and wood, hits you as you walk into room 4. There are a few unfinished projects left around the room on the desk tops. At the back of the room there is a door with a staircase "
-                            " behind it. The stairs lead to hallway 4.", false);
-    r5 = new room('r', 5, "h5, NULL, NULL, NULL", false);
-         r5->addItem(new Item("key1", "key", false, NULL));
-    r6 = new room('r', 6, "r9, h2, r6_3, r1", true);
-    r7 = new room('r', 7, "h3, h6, NULL, h4", false);
-    r8 = new room('r', 8, "h4, NULL, NULL, NULL", false);
-    r9 = new room('r', 9, "h4, NULL, NULL, NULL", false);
-    r10 = new room('r', 10, "r9, NULL, 12, NULL", true);
-    r11 = new room('r', 11, "h10, NULL/*secret*/, NULL, NULL", false);
-    h1 = new room('h', 1, "r4, r1, r2, r3", false);
-    h2 = new room('h', 2, "h7, NULL, NULL, r6", false);
-    h3 = new room('h', 3, "NULL, s, r7, s", false);
-    h4 = new room('h', 4, "r4, r7, r8, h5", false);
-    h5 = new room('h', 5, "NULL, h4, r5, NULL", false);
-    h6 = new room('h', 6, "NULL, NULL, NULL, r7", false);
-    h7 = new room('h', 7, "h2, NULL/*h11*/, NULL, r9", false);
-    h8 = new room('h', 8, "NULL/*15*/, h10, NULL, NULL/*14*/", false);
-    h9 = new room('h', 9, "NULL/*23*/, NULL, NULL, NULL", false);
-    h10 = new room('h', 10, "h8, NULL/*h15*/, r11, NULL/*h15*/", false);
-    r6_3 = new room('r', 6.3, "r6, NULL, NULL, NULL", false);
-        r6_3->addItem(new Item("key1", "key", false, NULL));
+                            " students used to take up. On the couch there is a sticky note. To your left is an elevator however it appears as if the power isn't working. Seeing as its so nice outside you "
+                            "didn't notice that all the lights aren't working.",
+                            "Exits: North is hallway 1.",false);
+        r2->addItem(new Item("Sticky note","There's a letter O written on it."));
 
-    h11 = new room ('h', 11, "There is a staircase north, leading downn to hallway 7, To your left there is a door to room 12.", false);
-    r12 = new room ('r', 12, "There is a staircase south, leading you to room 10. There is hallway 12 to your left, and hallway 11 to your right. Hallway 11 has a staircase leading down to hallway 7.", false);
-    h12 = new room ('h', 12, "North is room 13, To your right is room 12 and to your left is hallway 13.", false);
-    h13 = new room ('h', 13, "To your right is hallway 12 and to your left is hallway 14.", false);
-    h14 = new room ('h', 14, "To your right is hallway 13 and to your left is room 14.", false);
-    r14 = new room ('r', 14, "To your right there is hallway 14, south is a staircase leading to hallway 8. North you can see another staircase leading to a room but there is no access to the staircase from this room.", false);
-    r15 = new room ('r', 15, "To the right is a staircase leading to hallway 8.", false);
-    h21 = new room ('h', 21, "North is a staircase leading to hallway 23. South is a staircase leading to hallway 9 which has the exit to stables.", false);
-    h15 = new room ('h', 15, "Right is an elevator that goes to up to hallway 24, if you take north, and down to hallway 10. To your left are stairs that lead to up to hallway 24 and down to hallway 10. South leadss to hallway 17.", false);
-    h17 = new room ('h', 17, "North leads to hallway 15. To your right, at the end of the hallway, you can see another staircase to the right and a room south, but they aren't acessble as there is some construction blocking your way.", false);
-    h16 = new room ('h', 16, "To your right is a staircase leading to hallway 25. South is room 16. To your left is the rest of the hallway but it's blocked with construction, however you can see a door north of the hallway.", false);
-    r16 = new room ('r', 16, "North is teh exit to halway 16.", false);
-    h18 = new room ('h', 18, "North is room 17. To your right is hallway 19.", false);
-    h19 = new room ('h', 19, "North is room 18. To your left is room 20. South is elevator to room 2.", false);
-    r20 = new room ('r', 20, "North is hallway 20. South is hallway 22. To your right is hallway 19.", false);
-    h20 = new room ('h', 20, "South is room 20.", false);
-    h22 = new room ('h', 20, "North is room 20. To the right is room 21. South is room 24.", false);
-    r21 = new room ('r', 21, "North is room 22. South is room 23.", false);
-    r22 = new room ('r', 22, "South is room 21.", false);
-    r23 = new room ('r', 23, "North is room 21.", false);
-    r24 = new room ('r', 24, "North is hallway 22. Left is hallway 23. South is room 25.", false);
-    h23 = new room ('h', 23, "North is a staircase that takes you to hallway 21. South is room 27.", false);
-    r27 = new room ('r', 27, "North is hallway 23.", false);
-    r25 = new room ('r', 25, "North is room 24. South is hallway 24.", false);
-    h24 = new room ('h', 24, "Left is a staircase to hallway 15. Right is an elevator to hallway 15. North is room 25. South is hallway 25.", false);
-    h25 = new room ('h', 25, "North is hallway 24. South is room 26. To the right as the end of the hallway is a staircase that leads to hallway to 16.", false);
-    r26 = new room ('r', 26, "North is hallway 25.", false);
+    r3 = new room('r', 3, "Room 3 is an empty classroom, as you enter it you are met with empty desks and chairs. Written on the white board is stay at 127.0.0.1 wear a 255.255.255.0, "
+                            "guess a comp sci student was here before lockdown. There appears to be a pink fluffy pencil case left on one of the desks.",
+                            "Exits: East is hallway 1.", false);
+        //if you open the pencil case there is a letter M written on a sticky note
+        r3->addItem(new Item("Fluffy Pencilcase ", "The fluffy pink pencilcase appears to be full of stationary to a point where there is a little whole starting to tear at the seam of the zip."));
 
+    r4 = new room('r', 4, "The smell of saw dust and wood, hits you as you walk into room 4. All the tools are neatly put away in their proper places. It's shame that the power isn't working you were alway interested in"
+                            " trying to use some of them. Actually thinking about it maybe it's better that way, you could hurt yourself or accidentally burn the building down. There are a few unfinished "
+                            "projects left around the room on the desk tops. At the back of the room there is a door with a staircase behind it. The stairs lead to hallway 4.",
+                            "Exits: North is stairs to hallway 4 [floor 2]. South is hallway 1.", false);
+        //Can't be put in bag
+        //Can be powered on if the power is working
+        r4->addItem(new Item("Drill", "It a blue drill by some good brand. There is no drill bits in it though. It's locked to the wall by an extenable wire"));
+        //Can't be put in bag
+        //You get a splinter if you pick it up but it also reveals the letter E on its underside
+        r4->addItem(new Item("Project", "It looks like a silloutte of a guitar. The edges appear to be rough and not sanded down."));
+        //Can't be put in bag
+        //If you try to pick it you change you mind because it looks sharp
+        r4->addItem(new Item("Saw", "The blade looks very sharp and dangerous."));
+        r4->addItem(new Item("Sandpaper", "Its rough just like being on 3 hours of sleep and 4 coffees."));
 
+    r5 = new room('r', 5, "The room is an empty office admin looking room. There's a stack of student guidebooks and handbooks in the left corner of the room. There is also some UL merch, propabaly left over from an open "
+                            "day. Most of the drawers and cupboards are locked shut however there is one drawer left open with a silver key in it.",
+                            "Exits: North is stairs to hallway 5 [floor 2] ", false);
+         r5->addItem(new Item("Silver Key", "A small silver key. It has a tag with number 6 written on it."));
+         r5->addItem(new Item("Student Guidebook", "It has some basic information about the buildings, an FAQ with questions regarding admin things such as fees, accommodation. It also has contact information for year heads"
+                            " and fees office etc."));
+         //if you open it the letter L is written inside the cover with blue marker
+         r5->addItem(new Item("Student Handbook", "Outlines the rules of conduct in UL."));
+
+    r6 = new room('r', 6, "Room 6 is a large open room. You originally remember it from the open day when you went back in 6th year of secondary school. This is where you found the stall for computer science."
+                            " A more later mememory of the room would be back in 1st year of college when you played DND for the first time. The room was buzzing with Games Soc members all trying to set up their "
+                            "board games, campaigns and or views just standing around and watching the games unfold. As you look around you notice a blue dice on the ground by the large wall of windows."
+                            " South is room 6.3 the room you used sit in every Monday evening for four hours to play DND with your friends. East is a door leading to hallway 2.",
+                            "Exits: North are stairs to room 9 [floor 2]. South is an open door to room 6.3. West is room 1. East is hallway 2.", true);
+        //you can roll the dice and see what you get
+        r6->addItem(new Item("1d4 Blue Dice", "Its a pyramid shaped dice. Its main color is blue and the numbers are painted on with white However the number 1 is tipex over with to make it look like an A."));
+
+    r6_3 = new room('r', 6.3, "The nostaligia hits you as you enter the small room. The memories of fighting dire wolfs, golblins, spending too much gold bits on beer after a successful adventure all flood your mind. "
+                            "To describe the room - there is 2 large desks in the centre forming a small looking dinner table. There are 2 chairs on each side of the table. To the right is a clean white board. "
+                            "There is 2 markers on the little shelf, a blue and a red one.",
+                            "Exits: North is room 6.",false);
+        //not visible until blue marker picked up
+        r6_3->addItem(new Item("Gold key", "Its a small gold key with a tag on it. The tag has s written on it"));
+        //when you pick up the blue marker the cap drops under the table and you notice the gold key
+        r6_3->addItem(new Item("Blue Marker", "It's a white boards marker thats blue."));
+        //dried out so can't write
+        r6_3->addItem(new Item("Red Marker", "It's a white boards marker thats red."));
+
+    r7 = new room('r', 7, "Another lecture theatre this one is much smaller and looks like a classroom with extra seats. It has a blackboard which is rare to see since a lot of the other classroom and lecture halls use"
+                            " whiteboards with projectors. You notice there is a maths book for discrete mathematics left on the lecturer's desk.",
+                            "Exits: North is hallway 3. East is hallway 6 and west is hallway 4.", false);
+        //there is bookmarked page. When opened there is a graph in the shape of a letter N
+        r7->addItem(new Item("Maths book", "Discrete Mathematics: An Open Introduction by Oscar Levin."));
+
+    r8 = new room('r', 8, "Room 8 is another empty classroom. This time all the chairs are stacked up against the left wall and the desks as all next to each other against the back wall. "
+                            " "
+                            "guess a comp sci student was here before lockdown. There appears to be a pink fluffy pencil case left on one of the desks.",
+                            "Exits: North hallway 4", false);
+    r9 = new room('r', 9, "h4, NULL, NULL, NULL",
+                                    "Exits: North is stairs to room 6. South is room 10. East is hallway 7.", false);
+    r10 = new room('r', 10, "r9, NULL, 12, NULL",
+                                    "Exits: North is room 9.", true);
+
+    h1 = new room('h', 1, "A short hallway with a door on each wall",
+                            "Exits: North is room 4. South is room 2. West is room 3. East is room 1.", false);
+    h2 = new room('h', 2, "It's just a small stairwell leading to hallway 7.",
+                            "Exits: North is hallway 7 [floor 2]. West is room 6.", false);
+    h3 = new room('h', 3, "The glass wall from the room below extends to this level. There is a small balcony space allowing you to look down onto room S. Infront of the balcony wall there is a few couches.",
+                            "Exits: East and West both lead to room S [floor 1]. South leads to room 7. ", false);
+    h4 = new room('h', 4, "It's a long L shaped hallway. There are stairs leading to room 4 at one end of it. At the other end is the door to room 7. Door to hallway 5 is across from the door to room 7. "
+                            "Stairs to room 4 are across from the door to room 8 ",
+                            "Exits: North is room 4 [floor1]. South is room 8. West is hallway 5. East is room 7.", false);
+    h5 = new room('h', 5, "Another L shaped. At one end of the L are the stairs down to room 5",
+                            "Exits: East is hallway 4. South are stairs leading to room 5 [floor 1].", false);
+    h6 = new room('h', 6, "A small dead end hallway. It's filled with a bunch of sealed boxes and some spare desks and chairs.",
+                            "Exits: West is room 7", false);
+    h7 = new room('h', 7, "It's just a small stairwell leading to hallway 2.",
+                            "Exits: North is hallway 2 [floor 1].", false);
 //             (N, E, S, W)
     //a->setExits(b, c, d, e);
     s->setExits(NULL, h3, r1, h3);
     r1->setExits(s, r6, NULL, h1);
-    r2->setExits(h1, h19, NULL, NULL);
+    r2->setExits(h1, NULL, NULL, NULL);
     r3->setExits(NULL, h1, NULL, NULL);
     r4->setExits(h4, NULL, h1, NULL);
     r5->setExits(h5, NULL, NULL, NULL);
     r6->setExits(r9, h2, r6_3, r1);
+    r6_3->setExits(r6, NULL, NULL, NULL);
     r7->setExits(h3, h6, NULL, h4);
     r8->setExits(h4, NULL, NULL, NULL);
     r9->setExits(r6, h7, r10, NULL);
-    r10->setExits(r9, NULL, r12, NULL);
-    r11->setExits(h10, NULL/*secret*/, NULL, NULL);
+    r10->setExits(r9, NULL, NULL, NULL);
+
     h1->setExits(r4, r1, r2, r3);
     h2->setExits(h7, NULL, NULL, r6);
     h3->setExits(NULL, s, r7, s);
     h4->setExits(r4, r7, r8, h5);
     h5->setExits(NULL, h4, r5, NULL);
     h6->setExits(NULL, NULL, NULL, r7);
-    h7->setExits(h2, h11, NULL, r9);
-    h8->setExits(r15, h10, NULL, r14);
-    h9->setExits(r23, NULL, NULL, NULL);
-    h10->setExits(h8, h15, r11, h15);
-    r6_3->setExits(r6, NULL, NULL, NULL);
-
-    h11 -> setExits(h7, NULL, NULL, r12);
-    r12 -> setExits(NULL, h11, r10, h12);
-    h12 -> setExits(r13, r12, NULL, h13);
-    h13 -> setExits(NULL, h12, NULL, h14);
-    h14 -> setExits(NULL, h13, NULL, r14);
-    r14 -> setExits(NULL, h14, h8, NULL);
-    r15 -> setExits(NULL, NULL, NULL, h8);
-    h21 -> setExits(h23, NULL, h9, NULL);
-    h15 -> setExits(h24, h10, h17, h10);
-    h17 -> setExits(h15, NULL, NULL, NULL);
-    h16 -> setExits(NULL, h25, r16, NULL);
-    r16 -> setExits(h16, NULL, NULL, NULL);
-    h18 -> setExits(r17, NULL, NULL, h19);
-    h19 -> setExits(r18, h18, r2, r20);
-    r20 -> setExits(h20, h19, h22, NULL);
-    h20 -> setExits(NULL, NULL, r20, NULL);
-    h22 -> setExits(r20, NULL, r24, r21);
-    r21 -> setExits(r22, h22, r23, NULL);
-    r22 -> setExits(NULL, NULL, r21, NULL);
-    r23 -> setExits(r21, NULL, NULL, NULL);
-    r24 -> setExits(h22, NULL, r25, h23);
-    h23 -> setExits(h21, r24, r27, NULL);
-    r27 -> setExits(h23, NULL, NULL, NULL);
-    r25 -> setExits(r24, NULL, h24, NULL);
-    h24 -> setExits(r25, h15, h25, h15);
-    h25 -> setExits(h24, h16, r26, NULL);
-    r26 -> setExits(h25, NULL, NULL, NULL);
+    h7->setExits(h2, NULL, NULL, r9);
 
     currentRoom = s;
 }
@@ -146,16 +158,15 @@ void MainWindow::printWelcome() {
 
     mainText = "Hello Welcome\n" + currentRoom->longDescription();
     itemText = currentRoom->displayItem();
-    //mainImage = currentRoom->getImage();
-    //image = QPixmap(mainImage).scaled(ui->imageBox->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    //ui->imageBox->setPixmap(image);
 
     ui-> mainBox->setWordWrap(true);
     ui->mainBox->setText(mainText);
 
     ui-> itemTextBox->setWordWrap(true);
     ui->itemTextBox->setText(itemText);
+    QTimer::singleShot(0, ui->errorLabel, &QLabel::hide);
 
+    //change map to fit new layout
     mapImages.push_back(":/floor1.jpg");
     mapImages.push_back(":/floor2.jpg");
     mapImages.push_back(":/floor3.jpg");
@@ -184,11 +195,10 @@ bool MainWindow::processCommand(int buttonNumber) {
         for (int i = 0; i < x; i++){
             QPushButton *Button = new QPushButton();
 
-            connect(Button, &QPushButton::clicked, [=]() {
+            connect(Button, &QPushButton::clicked, this, [=] {
                 image = QPixmap(mapImages[i]).scaled(map->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
                 map->setPixmap(image);
             });
-
 
             Button->setText("Floor" + QString::number(i + 1));
             Button->setObjectName("Button" + QString::number(i));
@@ -232,12 +242,13 @@ bool MainWindow::processCommand(int buttonNumber) {
         newWin->setLayout(layout);
         newWin->show();
 
-
-
     } else if (buttonNumber == 6){
         //take  button
         mainText = currentRoom->longDescription();
         ui->mainBox->setText(mainText);
+        itemText = currentRoom->displayItem();
+        ui-> itemTextBox->setWordWrap(true);
+        ui->itemTextBox->setText(itemText);
 
         itemsInRoom = currentRoom->getItemsArray();
         newWin = new QWidget();
@@ -247,30 +258,41 @@ bool MainWindow::processCommand(int buttonNumber) {
 
         int x = currentRoom->numberOfItems();
 
-        for (int i = 0; i < x; i++){
-            QPushButton *Button = new QPushButton();
+        if (getBagItems().size() < 5 ){
+            for (int i = 0; i < x; i++){
+                QPushButton *Button = new QPushButton();
 
-            connect(Button, &QPushButton::clicked, [=]() {
-                addToBag(itemsInRoom[i]);
-                currentRoom-> removeItem(i);
-                ui->mainBox->setText(mainText + "\nYou took " + itemsInRoom[i].getShortDescription());
-                newWin->hide();
-            });
+                connect(Button, &QPushButton::clicked, this, [=]() {
+                    addToBag(itemsInRoom[i]);
+                    currentRoom-> removeItem(i);
+                    ui->mainBox->setText(mainText + "\nYou took " + itemsInRoom[i].getShortDescription());
+                    newWin->hide();
+                });
 
-            Button->setText(itemsInRoom[i].getShortDescription());
-            Button->setObjectName("Button" + QString::number(i));
+                Button->setText(itemsInRoom[i].getShortDescription());
+                Button->setObjectName("Button" + QString::number(i));
 
-            layout->addWidget(Button);
+                layout->addWidget(Button);
 
+            }
+            newWin->setWindowFlags(Qt::FramelessWindowHint | Qt::Popup);
+            newWin->setLayout(layout);
+            newWin->show();
+
+        } else {
+            ui->errorLabel->setText("No space in bag. Put something down first. " );
+            ui->errorLabel->setWordWrap(true);
+            QTimer::singleShot(0, ui->errorLabel, &QLabel::show);
+            QTimer::singleShot(3000, ui->errorLabel, &QLabel::hide);
         }
-        newWin->setWindowFlags(Qt::FramelessWindowHint | Qt::Popup);
-        newWin->setLayout(layout);
-        newWin->show();
 
     } else if (buttonNumber == 7){
         //put item
         mainText = currentRoom->longDescription();
         ui->mainBox->setText(mainText);
+        itemText = currentRoom->displayItem();
+        ui-> itemTextBox->setWordWrap(true);
+        ui->itemTextBox->setText(itemText);
 
         itemsInBag = getBagItems();
 
@@ -284,11 +306,57 @@ bool MainWindow::processCommand(int buttonNumber) {
         for (int i = 0; i < x; i++){
             QPushButton *Button = new QPushButton();
 
-            connect(Button, &QPushButton::clicked, [=]() {
+            connect(Button, &QPushButton::clicked, this, [=]() {
                 currentRoom->addItemFromBag(itemsInBag[i]);
                 removeItem(i);
                 ui->mainBox->setText(mainText + "\nYou dropped " + itemsInBag[i].getShortDescription());
                 newWin->hide();
+            });
+
+            Button->setText(itemsInRoom[i].getShortDescription());
+            Button->setObjectName("Button" + QString::number(i));
+
+            layout->addWidget(Button);
+
+        }
+        newWin->setWindowFlags(Qt::FramelessWindowHint | Qt::Popup);
+        newWin->setLayout(layout);
+        newWin->show();
+
+    } else if (buttonNumber == 8){
+    //inspect item
+        mainText = currentRoom->longDescription();
+        ui->mainBox->setText(mainText);
+        itemText = currentRoom->displayItem();
+        ui-> itemTextBox->setWordWrap(true);
+        ui->itemTextBox->setText(itemText);
+
+        itemsInRoom = currentRoom->getItemsArray();
+        newWin = new QWidget();
+        layout = new QVBoxLayout();
+        newWin->setWindowTitle("Inspect");
+        newWin->setGeometry(500,400,200,200);
+
+        int x = currentRoom->numberOfItems();
+
+        for (int i = 0; i < x; i++){
+            QPushButton *Button = new QPushButton();
+
+            connect(Button, &QPushButton::clicked, this, [=]() {
+                QWidget *newWin2 = new QWidget();
+                newWin2->setStyleSheet("QWidget { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 255, 255), stop:1 rgba(255, 255, 0, 255));}");
+                QVBoxLayout *layout2 = new QVBoxLayout();
+                newWin2->setGeometry(500,400,200,200);
+                newWin2 -> setWindowTitle(itemsInRoom[i].getShortDescription());
+                QLabel *label = new QLabel();
+                label->setStyleSheet("QLabel { background-color : white; }");
+
+                label -> setText(itemsInRoom[i].getLongDescription());
+
+                layout2 -> addWidget(label);
+                newWin2->setWindowFlags(Qt::FramelessWindowHint | Qt::Popup);
+                newWin2->setLayout(layout2);
+                newWin2->show();
             });
 
             Button->setText(itemsInRoom[i].getShortDescription());
@@ -311,20 +379,20 @@ void MainWindow::go(string direction) {
     room* nextRoom = currentRoom->nextRoom(direction);
 
     if (nextRoom == NULL){
+
         ui->errorLabel->setText("No room this way");
-        ui->errorLabel->setStyleSheet("background-color:white");
         QTimer::singleShot(0, ui->errorLabel, &QLabel::show);
         QTimer::singleShot(3000, ui->errorLabel, &QLabel::hide);
 
     } else if(nextRoom->isRequired() == true) {
         mainText = currentRoom->longDescription();
         itemText = currentRoom->displayItem();
-        ui->mainBox->setText(mainText +"\nYou need a key");
+        ui->errorLabel->setText("You need a key");
         ui-> itemTextBox->setWordWrap(true);
         ui->itemTextBox->setText(itemText);
         int x = getBagItems().size();
         for(int i = 0; i < x; i++){
-            if (itemsInBag[i].getShortDescription() == "key1"){
+            if (itemsInBag[i].getShortDescription() == "Silver Key"){
                  removeItem(i);
                  nextRoom->setRequired(false);
                 ui->mainBox->setText(mainText + "\nDoor unlocked you can open it now.");
@@ -334,14 +402,10 @@ void MainWindow::go(string direction) {
     } else {
         currentRoom = nextRoom;
         mainText = currentRoom->longDescription();
-
         itemText = currentRoom->displayItem();
 
         ui-> itemTextBox->setWordWrap(true);
         ui->itemTextBox->setText(itemText);
-        //mainImage = currentRoom->getImage();
-        //image = QPixmap(mainImage).scaled(ui->imageBox->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        //ui->imageBox->setPixmap(image);
         ui-> mainBox->setWordWrap(true);
         ui->mainBox->setText(mainText);
     }
@@ -395,6 +459,10 @@ void MainWindow::on_put_clicked(){
     processCommand(7);
 }
 
+void MainWindow::on_inspect_clicked(){
+    processCommand(8);
+}
+
 void MainWindow::on_actionHow_To_Play_triggered(){
 
     QWidget *wid=new QWidget();
@@ -404,7 +472,7 @@ void MainWindow::on_actionHow_To_Play_triggered(){
 
     QLabel *howTo = new QLabel();
     howTo->setStyleSheet("QLabel { background-color : white; }");
-    howTo->setText("Welcome to our Zork.\nThe rules are simple enough, just use the buttons on screen to try and get yourself out of the zombie apocalypse.");
+    howTo->setText("Welcome to our Zork.\nThe rules are simple enough, just use the buttons on screen to move around the building.");
     howTo->setWordWrap(true);
 
     layout->addWidget(howTo);
@@ -415,7 +483,7 @@ void MainWindow::on_actionHow_To_Play_triggered(){
 
 }
 
-void MainWindow::on_actionQuit_triggered()
-{
+void MainWindow::on_actionQuit_triggered(){
     exit(0);
 }
+
