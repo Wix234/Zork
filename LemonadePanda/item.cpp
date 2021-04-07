@@ -1,24 +1,17 @@
-#ifndef ITEM_H_
-#define ITEM_H_
+#include "item.h"
 
-#include <map>
-#include <string>
-#include <QMainWindow>
-//make key be an inheritence class of items
-class Item {
-private:
-    QString name;
-    QString description;
-    int size;
-public:
-    //Initializer List
-    Item (QString name = "Room name", QString description = "description", int size = 0):name(name), description(description), size(size){};
 
-    QString getShortDescription();
-    QString getLongDescription();
-    int getSize();
+QString Item::getShortDescription(){
 
-};
+    return name;
+}
 
-#endif /*ITEM_H_*/
+QString Item::getLongDescription(){
+
+    return name + ". " + description + ".\n";
+}
+
+int Item::getSize(){
+    return size;
+}
 
