@@ -3,28 +3,20 @@
 
 #include <map>
 #include <string>
-#include <iostream>
-using namespace std;
-
+#include <QMainWindow>
+//make key be an inheritence class of items
 class Item {
 private:
-    string description;
-    string longDescription;
-    int weightGrams;
-    float value;
-    bool weaponCheck;
-
+    QString name;
+    QString description;
+    int size;
 public:
-    Item (string description, int inWeight, float inValue);
-    Item (string description);
-    string getShortDescription();
-    string getLongDescription();
-    int getWeight();
-    void setWeight(int weightGrams);
-    float getValue();
-    void setValue(float value);
-    int getWeaponCheck();
-    void setWeaponCheck(int weaponCheck);
+    //Initializer List
+    Item (QString name = "Room name", QString description = "description", int size = 0):name(name), description(description), size(size){};
+
+    QString getShortDescription();
+    QString getLongDescription();
+    int getSize();
 };
 
 #endif /*ITEM_H_*/
