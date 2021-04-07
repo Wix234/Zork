@@ -1,38 +1,24 @@
-#include "item.h"
+#ifndef ITEM_H_
+#define ITEM_H_
 
-Item::Item (QString name, QString description) {
-    this -> name = name;
-    this -> description = description;
-}
+#include <map>
+#include <string>
+#include <QMainWindow>
+//make key be an inheritence class of items
+class Item {
+private:
+    QString name;
+    QString description;
+    int size;
+public:
+    //Initializer List
+    Item (QString name = "Room name", QString description = "description", int size = 0):name(name), description(description), size(size){};
 
-Item::Item (QString name, QString description, bool isWeapon, int DMG) {
-    this -> name = name;
-    this -> description = description;
-    this -> DMG = DMG;
-    this -> isWeapon = isWeapon;
-    setWeaponCheck(isWeapon, DMG);
-}
+    QString getShortDescription();
+    QString getLongDescription();
+    int getSize();
 
-void Item::setWeaponCheck(bool isWeapon, int DMG){
+};
 
-    if(isWeapon != true){
-        this -> DMG = 0;
-    } else {
-        this -> DMG = DMG;
-    }
+#endif /*ITEM_H_*/
 
-}
-
-QString Item::getShortDescription(){
-
-    return name;
-}
-
-QString Item::getLongDescription(){
-
-    if (isWeapon == false){
-        return name + ". " + description + ".\n";
-    } else {
-        return name + " " + description + ". It's a weapon that does " + QString::number(DMG) + " damage.\n";
-    }
-}
