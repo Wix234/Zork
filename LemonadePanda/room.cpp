@@ -1,20 +1,11 @@
 #include "room.h"
 
-
-
-room::room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired){
-    this -> roomType = roomType;
-    this -> roomNum = roomNum;
-    this -> description = description;
-    this -> image = image;
-    this -> itemRequired = itemRequired;
-}
-
-room::room(QChar roomType, double roomNum, QString description, bool itemRequired){
+room::room(QChar roomType, double roomNum, QString description, QString waysOut, bool itemRequired){
     this -> roomType = roomType;
     this -> roomNum = roomNum;
     this -> description = description;
     this -> itemRequired = itemRequired;
+    this -> waysOut = waysOut;
 }
 
 void room::setExits(room *north, room *east, room *south, room *west){
@@ -36,7 +27,7 @@ QString room::longDescription() {
     QString roomID = "";
     QChar tempChar = roomType;
     roomID += tempChar;
-    return "Your currently in " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n ";
+    return "Your currently in " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n\n" + waysOut;
 
 }
 
@@ -142,4 +133,3 @@ void room::removeItem(int placeNum){
         }
     return -1;
 }*/
-

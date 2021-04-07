@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 //add background color to popup windows
@@ -132,7 +132,7 @@ void MainWindow::createRooms()  {
     //a->setExits(b, c, d, e);
     s->setExits(NULL, h3, r1, h3);
     r1->setExits(s, r6, NULL, h1);
-    r2->setExits(h1, NULL, NULL, NULL);
+    r2->setExits(h1, h19, NULL, NULL);
     r3->setExits(NULL, h1, NULL, NULL);
     r4->setExits(h4, NULL, h1, NULL);
     r5->setExits(h5, NULL, NULL, NULL);

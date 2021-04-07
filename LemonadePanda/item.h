@@ -4,22 +4,19 @@
 #include <map>
 #include <string>
 #include <QMainWindow>
-
+//make key be an inheritence class of items
 class Item {
 private:
-    QString description;
     QString name;
-    bool isWeapon;
-    int DMG;
-
+    QString description;
+    int size;
 public:
-    Item (QString name, QString description);
-    Item (QString name, QString description, bool isWeapon, int DMG);
-    void setWeaponCheck(bool isWeaapon, int DMG);
+    //Initializer List
+    Item (QString name = "Room name", QString description = "description", int size = 0):name(name), description(description), size(size){};
 
     QString getShortDescription();
     QString getLongDescription();
+    int getSize();
 };
 
 #endif /*ITEM_H_*/
-

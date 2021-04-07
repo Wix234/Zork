@@ -9,6 +9,7 @@
 
 #include "item.h"
 
+//set bag to array
 
 using namespace std;
 using std::vector;
@@ -19,6 +20,7 @@ private:
     QString description;
     QString name;
     QString image;
+    QString waysOut;
 
 
     bool itemRequired;
@@ -36,8 +38,8 @@ private:
 
 public:
 
-    room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired);
-    room(QChar roomType, double roomNum, QString description, bool itemRequired);
+    //room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired);
+    room(QChar roomType, double roomNum, QString description, QString waysOut, bool itemRequired);
     void setExits(room *north, room *east, room *south, room *west);
     QString shortDescription();
     QString longDescription();
@@ -61,4 +63,3 @@ public:
 };
 
 #endif
-
