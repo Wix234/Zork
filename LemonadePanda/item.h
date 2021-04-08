@@ -9,14 +9,14 @@ class Item {
 private:
     QString name;
     QString description;
-    int size;
+    bool pickUp;
 public:
     //Initializer List
-    Item (QString name = "Room name", QString description = "description", int size = 0):name(name), description(description), size(size){};
+    Item (QString name = "Room name", QString description = "description", bool pickUp = true):name(name), description(description), pickUp(pickUp){};
 
     QString getShortDescription();
     QString getLongDescription();
-    int getSize();
+    bool getPickUp();
 };
 
 #endif /*ITEM_H_*/
