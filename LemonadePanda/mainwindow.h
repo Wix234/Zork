@@ -12,8 +12,12 @@
 
 #include "widget.h"
 #include "room.h"
-#include "inspectItems.h"
+#include "inspectitem.h"
 //friend inspectItems.h
+
+#include <iostream>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -57,22 +61,25 @@ private:
     QString itemText;
     //QString mainImage;
     QString itemsList;
+    QString winBg = "QWidget { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 255, 255), stop:1 rgba(255, 255, 0, 255));}";
+    QString lblBg = "QWidget { background-color: rgb(255, 255, 255);}";
+    QString btnBg = "QWidget { background-color: rgb(255, 255, 255); font: bold }";
+
+    QFont font = QFont("Consolas", 9);
 
 
 
     QPixmap image;
 
     room *s, *r1, *r2, *r3, *r4, *r5, *r6, *r7, *r8, *r9, *r10, *r11, *h1, *h2, *h3, *h4, *h5, *h6, *h7, *h8, *h9, *h10, *r6_3;
-    room *h11, *h12, *h13, *h14, *h15, *h16, *h17, *h21, *r12, *r13, *r14, *r15, *r16;
-    room *h18, *h19, *h20, *h22, *h23, *h24, *h25, *r17, *r18, *r20, *r21, *r22, *r23, *r24, *r25, *r26, *r27;
-    //idk what happened to room 19 its not on the map oops
+
     room *currentRoom;
     room *nextRoom;
 
     vector <Item> itemsInRoom;
     vector <Item> itemsInBag;
 
-    vector<QString> mapImages;
+    QString mapImages[2]{":/floor1.jpg", ":/floor2.jpg"};
 
     QWidget *newWin;
     QVBoxLayout *layout;
