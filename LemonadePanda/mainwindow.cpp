@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 //add background color to popup windows
@@ -190,7 +190,7 @@ bool MainWindow::processCommand(int buttonNumber) {
                 image = QPixmap(mapImages[i]).scaled(map->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
                 map->setPixmap(image);
             });
-
+            Button->setIcon(QIcon());
             Button->setFont(font);
             Button->setStyleSheet(btnBg);
             Button->setText("Floor" + QString::number(i + 1));
@@ -374,7 +374,22 @@ bool MainWindow::processCommand(int buttonNumber) {
                 label->setWordWrap(true);
                 label->setText(itemsInRoom[i].getLongDescription());
 
+                QPushButton *Button2 = new QPushButton();
+                Button2->setFont(font);
+                Button2->setStyleSheet(btnBg);
+                Button2->setText("Interact");
+                Button2->setObjectName("Button" + QString::number(i));
+
+                connect(Button2, &QPushButton::clicked, this, [=]() {
+                     inspectitem *inspect = new inspectitem();
+
+                     inspect->ifStatementsForItems(itemsInRoom[i].getShortDescription());
+
+                     cout <<"it clicked";
+                });
+
                 layout2->addWidget(label);
+                layout2->addWidget(Button2);
 
                 newWin2->setWindowFlags(Qt::FramelessWindowHint | Qt::Popup);
                 newWin2->setLayout(layout2);

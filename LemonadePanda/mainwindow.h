@@ -80,6 +80,7 @@ private:
     vector <Item> itemsInBag;
 
     QString mapImages[2]{":/floor1.jpg", ":/floor2.jpg"};
+     QString icons[2]{":/apple.jfif", ":/banana.jpg"};
 
     QWidget *newWin;
     QVBoxLayout *layout;
