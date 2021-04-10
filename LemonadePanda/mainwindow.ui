@@ -172,7 +172,7 @@ border:2px solid black</string>
     </property>
     <property name="font">
      <font>
-      <family>MS Sans Serif</family>
+      <family>Consolas</family>
       <pointsize>22</pointsize>
       <weight>75</weight>
       <italic>true</italic>
@@ -181,6 +181,7 @@ border:2px solid black</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
+border:2px solid black;
 </string>
     </property>
     <property name="text">

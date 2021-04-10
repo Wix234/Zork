@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "room.h"
+#include "roominbuilding.h"
 
 #include <iostream>
 #include <string>
@@ -9,7 +9,7 @@ using namespace std;
 
 class Zork {
 private:
-    room *currentRoom;
+    roomInBuilding *currentRoom;
     void createRooms();
 
 
@@ -18,7 +18,7 @@ public:
     Zork();
     void play();
     string go(string direction);
-    room* getRoom();
+    roomInBuilding* getRoom();
 };
 
 #endif // MAIN_H

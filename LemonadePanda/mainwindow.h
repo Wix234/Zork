@@ -11,9 +11,14 @@
 
 
 #include "widget.h"
-#include "room.h"
+#include "roominbuilding.h"
 #include "inspectitem.h"
+
 //friend inspectItems.h
+
+#include <iostream>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -55,23 +60,25 @@ private:
 
     QString mainText;
     QString itemText;
-    //QString mainImage;
     QString itemsList;
+    QString winBg = "QWidget { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 255, 255), stop:1 rgba(255, 255, 0, 255));}";
+    QString lblBg = "QWidget { background-color: rgb(255, 255, 255);}";
+    QString btnBg = "QWidget { background-color: rgb(255, 255, 255); font: bold }";
+    QString objInteract;
 
-    int bagSize;
-    int counter;
+    QFont font = QFont("Consolas", 9);
+
+
 
     QPixmap image;
+    floor *f1, *f2;
+    roomInBuilding *s, *r1, *r2, *r3, *r4, *r5, *r6, *r7, *r8, *r9, *r10, *r11, *h1, *h2, *h3, *h4, *h5, *h6, *h7, *h8, *h9, *h10, *r6_3;
 
-    room *s, *r1, *r2, *r3, *r4, *r5, *r6, *r7, *r8, *r9, *r10, *r11, *h1, *h2, *h3, *h4, *h5, *h6, *h7, *h8, *h9, *h10, *r6_3;
-
-    room *currentRoom;
-    room *nextRoom;
+    roomInBuilding *currentRoom;
+    roomInBuilding *nextRoom;
 
     vector <Item> itemsInRoom;
-    Item itemTemp;
-
-    Item itemsInBag[5] ;
+    vector <Item> itemsInBag;
 
     QString mapImages[2]{":/floor1.jpg", ":/floor2.jpg"};
 
@@ -85,7 +92,7 @@ private:
     bool processCommand(int);
     void go(string);
     void addToBag(Item item);
-    Item* getBagItems();
+    vector <Item> getBagItems();
     void removeItem(int placeNum);
 
 };

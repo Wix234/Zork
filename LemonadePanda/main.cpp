@@ -3,7 +3,7 @@
 
 #include <QApplication>
 
-list <room> rooms;
+list <roomInBuilding> rooms;
 
 int main(int argc, char *argv[])
 {

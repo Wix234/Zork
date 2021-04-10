@@ -8,10 +8,9 @@ QString Item::getShortDescription(){
 
 QString Item::getLongDescription(){
 
-    return name + ". " + description + ".\n";
+    return name + ". " + description + "\n";
 }
 
-int Item::getSize(){
-    return size;
+bool Item::getPickUp(){
+    return pickUp;
 }
-

@@ -9,17 +9,29 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    character.cpp \
+    enemy.cpp \
+    floor.cpp \
+    inspectitem.cpp \
     item.cpp \
+    key.cpp \
     main.cpp \
     mainwindow.cpp \
-    room.cpp \
+    player.cpp \
+    roominbuilding.cpp \
     zorkMain.cpp
 
 HEADERS += \
+    character.h \
+    enemy.h \
+    floor.h \
+    inspectitem.h \
     item.h \
+    key.h \
     main.h \
     mainwindow.h \
-    room.h \
+    player.h \
+    roominbuilding.h \
     zorkMain.h
 
 FORMS += \
@@ -32,3 +44,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     images.qrc
+
+DISTFILES +=

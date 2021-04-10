@@ -1,24 +1,22 @@
-#ifndef ITEM_H_
-#define ITEM_H_
+#ifndef ITEMH
+#define ITEMH
 
 #include <map>
 #include <string>
 #include <QMainWindow>
-
+//make key be an inheritence class of items
 class Item {
 private:
-    QString description;
     QString name;
-    bool isWeapon;
-    int DMG;
-
+    QString description;
+    bool pickUp;
 public:
-    Item (QString name, QString description);
-    Item (QString name, QString description, bool isWeapon, int DMG);
-    void setWeaponCheck(bool isWeaapon, int DMG);
+    //Initializer List
+    Item (QString name = "Room name", QString description = "description", bool pickUp = true):name(name), description(description), pickUp(pickUp){};
 
     QString getShortDescription();
     QString getLongDescription();
+    bool getPickUp();
 };
 
-#endif /*ITEM_H_*/
+#endif /*ITEMH*/
