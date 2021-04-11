@@ -8,12 +8,21 @@
 #include <QTimer>
 #include <QLayout>
 #include <QStackedWidget>
+#include <stdio.h>
+#include <ctime>
+
 
 
 #include "widget.h"
 #include "room.h"
-#include "inspectItems.h"
+#include "inspectitem.h"
+#include "floor.h"
+
 //friend inspectItems.h
+
+#include <iostream>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;}
@@ -57,20 +66,29 @@ private:
     QString itemText;
     //QString mainImage;
     QString itemsList;
+    QString winBg = "QWidget { background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 255, 255), stop:1 rgba(255, 255, 0, 255));}";
+    QString lblBg = "QWidget { background-color: rgb(255, 255, 255);}";
+    QString btnBg = "QWidget { background-color: rgb(255, 255, 255); font: bold }";
+    QString objInteract;
 
-
+    QFont font = QFont("Consolas", 9);
 
     QPixmap image;
 
-    room *s, *r1, *r2, *r3, *r4, *r5, *r6, *r7, *r8, *r9, *r10, *r11, *h1, *h2, *h3, *h4, *h5, *h6, *h7, *h8, *h9, *h10, *r6_3;
+    struct date{ unsigned int d : 5, m : 4; };
+
+    room *s,*r1, *r2, *r3, *r4, *r5, *r6, *r7, *r8, *r9, *r10, *r11, *r6_3;
+    room *h1, *h2, *h3, *h4, *h5, *h6, *h7, *h8, *h9, *h10;
+    floor *f1, *f2;
 
     room *currentRoom;
     room *nextRoom;
 
-    vector <Item> itemsInRoom;
-    vector <Item> itemsInBag;
+    vector <Item*> itemsInRoom;
+    vector <Item*> itemsInBag;
 
-    vector<QString> mapImages;
+    QString mapImages[2]{":/floor1.jpg", ":/floor2.jpg"};
+    floor floorsArr[2];
 
     QWidget *newWin;
     QVBoxLayout *layout;
@@ -81,9 +99,10 @@ private:
     void printWelcome();
     bool processCommand(int);
     void go(string);
-    void addToBag(Item item);
-    vector <Item> getBagItems();
+    void addToBag(Item *item);
+    vector <Item*> getBagItems();
     void removeItem(int placeNum);
+
 
 };
 

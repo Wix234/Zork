@@ -1,21 +1,8 @@
 #include "room.h"
+room::room(){
 
-
-
-room::room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired){
-    this -> roomType = roomType;
-    this -> roomNum = roomNum;
-    this -> description = description;
-    this -> image = image;
-    this -> itemRequired = itemRequired;
 }
 
-room::room(QChar roomType, double roomNum, QString description, bool itemRequired){
-    this -> roomType = roomType;
-    this -> roomNum = roomNum;
-    this -> description = description;
-    this -> itemRequired = itemRequired;
-}
 
 void room::setExits(room *north, room *east, room *south, room *west){
     if (north != NULL)
@@ -29,15 +16,19 @@ void room::setExits(room *north, room *east, room *south, room *west){
 }
 
 QString room::shortDescription() {
-    return description;
+    return this -> description;
 }
 
 QString room::longDescription() {
     QString roomID = "";
     QChar tempChar = roomType;
     roomID += tempChar;
-    return "Your currently in " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n ";
+    return "Your currently in " + roomID + "" + QString::number(roomNum)  + ".\n" + description + "\n\n" + waysOut;
 
+}
+
+void room::setDescription(QString description){
+    this-> description = description;
 }
 
 QString room::getImage(){
@@ -68,11 +59,13 @@ void room::setRequired(bool itemRequired){
     this-> itemRequired = itemRequired;
 }
 
+
 void room::addItem(Item *inItem) {
-    itemsInRoom.push_back(*inItem);
+    itemsInRoom.push_back(inItem);
 }
 
-void room::addItemFromBag(Item inItem){
+
+void room::addItemFromBag(Item *inItem){
     itemsInRoom.push_back(inItem);
 }
 
@@ -85,7 +78,8 @@ QString room::displayItem() {
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = tempString + itemsInRoom[x]->getName() + "  " ;
+            //tempString = tempString + itemsInRoom[x]->keys::getName() + "  " ;
             x++;
             }
         }
@@ -105,14 +99,14 @@ QString room:: getItems(){
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = itemsInRoom[x]->getName() + "  " ;
             x++;
             }
         }
     return tempString;
 }
 
-vector <Item> room::getItemsArray(){
+vector <Item*> room::getItemsArray(){
     return itemsInRoom;
 }
 
@@ -121,25 +115,4 @@ void room::removeItem(int placeNum){
     itemsInRoom.erase(itemsInRoom.begin() + placeNum);
 }
 
-
-/*int room::isItemInRoom(string inString)
-{
-    int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
-        return false;
-        }
-    else if (itemsInRoom.size() > 0) {
-       int x = (0);
-        for (int n = sizeItems; n > 0; n--) {
-            // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
-            if (tempFlag == 0) {
-                itemsInRoom.erase(itemsInRoom.begin()+x);
-                return x;
-            }
-            x++;
-            }
-        }
-    return -1;
-}*/
 

@@ -8,7 +8,10 @@
 #include <vector>
 
 #include "item.h"
+#include "keys.h"
 
+
+//set bag to array
 
 using namespace std;
 using std::vector;
@@ -16,28 +19,30 @@ using std::vector;
 class room {
 
 private:
+
+    QChar roomType;
+    double roomNum;
     QString description;
     QString name;
     QString image;
+    QString waysOut;
 
-
-    bool itemRequired;
-
-    QChar roomType;
-
-    double roomNum;
+    bool itemRequired; 
 
     map<string, room*> exits;
 
-    string exitString();
+    vector <Item*> itemsInRoom;
+    vector <Item*> itemsInBag;
+    vector <keys*> keysInRoom;
 
-    vector <Item> itemsInRoom;
-    vector <Item> itemsInBag;
 
 public:
+    room();
+    room(QChar roomType = 'r', double roomNum = 0, QString description = "description78678678", QString waysOut = "Exits", bool itemRequired = false)
+        :roomType(roomType), roomNum(roomNum), description(description), waysOut(waysOut), itemRequired(itemRequired){};
 
-    room(QChar roomType, double roomNum, QString description, QString image, bool itemRequired);
-    room(QChar roomType, double roomNum, QString description, bool itemRequired);
+
+
     void setExits(room *north, room *east, room *south, room *west);
     QString shortDescription();
     QString longDescription();
@@ -48,17 +53,18 @@ public:
     bool isRequired();
     void setRequired(bool itemRequired);
 
+    void setDescription(QString description);
+
     void addItem(Item *inItem);
-    void addItemFromBag(Item inItem);
+    void addItemFromBag(Item *inItem);
     QString displayItem();
     int numberOfItems();
     QString getItems();
-    vector <Item> getItemsArray();
+    vector <Item*> getItemsArray();
     void removeItem(int placeNum);
-    //int isItemInRoom(string inString);
+
 
 
 };
 
 #endif
-

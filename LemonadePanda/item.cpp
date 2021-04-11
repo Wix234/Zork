@@ -1,39 +1,37 @@
 #include "item.h"
 
-Item::Item (QString name, QString description) {
-    this -> name = name;
-    this -> description = description;
+Item::Item(){};
+
+Item::Item(QString name, QString description, bool pickUp){
+    this->name = name;
+    this->description = description;
+    this->pickUp = pickUp;
 }
 
-Item::Item (QString name, QString description, bool isWeapon, int DMG) {
-    this -> name = name;
-    this -> description = description;
-    this -> DMG = DMG;
-    this -> isWeapon = isWeapon;
-    setWeaponCheck(isWeapon, DMG);
-}
 
-void Item::setWeaponCheck(bool isWeapon, int DMG){
-
-    if(isWeapon != true){
-        this -> DMG = 0;
-    } else {
-        this -> DMG = DMG;
-    }
-
-}
-
-QString Item::getShortDescription(){
+QString Item::getName(){
 
     return name;
 }
 
-QString Item::getLongDescription(){
+QString Item::getDescription(){
 
-    if (isWeapon == false){
-        return name + ". " + description + ".\n";
-    } else {
-        return name + " " + description + ". It's a weapon that does " + QString::number(DMG) + " damage.\n";
-    }
+    return description;
 }
 
+bool Item::getPickUp(){
+    return pickUp;
+}
+
+void Item::setName(QString name){
+    this -> name = name;
+}
+
+void Item::setDescription(QString description){
+    this -> description = description;
+}
+
+
+QString Item::getFullDescription(){
+    return name + "." + description + "\n";
+}

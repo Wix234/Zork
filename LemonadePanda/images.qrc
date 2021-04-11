@@ -1,16 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>main door.jfif</file>
-        <file>stairs.jpg</file>
-        <file>apple.jfif</file>
-        <file>banana.jpg</file>
-        <file>cantalope.jfif</file>
-        <file>dragon fruit.jpg</file>
-        <file>fig.jfif</file>
-        <file>grape.jfif</file>
-        <file>honeydew melon.jfif</file>
-        <file>indian prune.jfif</file>
-        <file>jalapeno.jfif</file>
-        <file>elderberry.jfif</file>
+        <file>floor1.jpg</file>
+        <file>floor2.jpg</file>
     </qresource>
 </RCC>

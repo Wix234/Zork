@@ -1,30 +1,24 @@
-#ifndef ZORKUL_H_
-#define ZORKUL_H_
+#ifndef MAIN_H
+#define MAIN_H
 
-#include "Command.h"
-#include "Parser.h"
-#include "Room.h"
-#include "Item.h"
+#include "room.h"
+
 #include <iostream>
 #include <string>
 using namespace std;
 
-class ZorkUL {
+class Zork {
 private:
-    Parser parser;
-    Room *currentRoom;
+    room *currentRoom;
     void createRooms();
-    void printWelcome();
-    bool processCommand(Command command);
-    void printHelp();
-    void goRoom(Command command);
-    void createItems();
-    void displayItems();
+
+
 
 public:
-    ZorkUL();
+    Zork();
     void play();
     string go(string direction);
+    room* getRoom();
 };
 
-#endif /*ZORKUL_H_*/
+#endif // MAIN_H

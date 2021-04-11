@@ -5,21 +5,23 @@
 #include <string>
 #include <QMainWindow>
 
+//make key be an inheritence class of items
 class Item {
 private:
-    QString description;
     QString name;
-    bool isWeapon;
-    int DMG;
+    QString description;
+    bool pickUp;
 
 public:
-    Item (QString name, QString description);
-    Item (QString name, QString description, bool isWeapon, int DMG);
-    void setWeaponCheck(bool isWeaapon, int DMG);
+    Item();
+    Item(QString name, QString description, bool pickUp);
+    QString getName();
+    QString getDescription();
+    bool getPickUp();
+    void setName(QString name);
+    void setDescription(QString description);
 
-    QString getShortDescription();
-    QString getLongDescription();
+    QString getFullDescription();
 };
 
 #endif /*ITEM_H_*/
-
